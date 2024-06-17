@@ -1,14 +1,15 @@
 import { useState } from 'react'
 import './App.css'
+import MyNav from './components/MyNav'
+import GetProfiles from './components/GetProfiles'
 
 function App() {
 
   return (
     <>
 
-      <div className='p-5'>
-        <h1 className=''>ciao a tutti</h1>
-      </div>
+    <GetProfiles />
+    <MyNav />
 
     </>
   )

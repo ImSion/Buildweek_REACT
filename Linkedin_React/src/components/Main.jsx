@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from '../modules/axios'
 
-export default function GetProfiles() {
+export default function Main() {
 
    axios.get('/profile/me')
     .then((response) => {
@@ -33,8 +33,9 @@ export default function GetProfiles() {
 
 
   return (
-    <div>
+    <div className='bg-[#f4f2ee]'>
 
+      <h1>ciao</h1>
     </div>
   )
 }

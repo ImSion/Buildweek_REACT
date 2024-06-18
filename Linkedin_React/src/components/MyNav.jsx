@@ -5,9 +5,9 @@ import { Dropdown } from 'flowbite-react'
 
 export default function MyNav({ search, setSearch, handleChange }) {
   return (  
-      <nav className="bg-white border-gray-200 dark:bg-gray-900 container-">
+      <nav className="bg-white border-gray-200 dark:bg-gray-900 p-2 border-b-[1px]">
 
-        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-8">
+        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-3">
 
           <div className='flex items-center'>
             <svg xmlns="http://www.w3.org/2000/svg" className='mx-5 w-10 h-10 text-[#0a66c2]' viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" focusable="false">
@@ -76,11 +76,11 @@ export default function MyNav({ search, setSearch, handleChange }) {
                 </button>
               </li>
 
-              <li>
+              <li className='flex flex-col items-center'>
                 <img src="https://picsum.photos/seed/picsum/200/300" alt="profile_img" className='w-6 h-6 rounded-xl'/>
-                <Dropdown label="" dismissOnClick={false} renderTrigger={() => 
-                <button className='flex'>
-                  <p>Tu</p>
+                <Dropdown className='rounded-tl-lg rounded-bl-lg rounded-br-lg rounded-tr-none mt-1' label="" dismissOnClick={false} renderTrigger={() => 
+                <button className='flex items-center'>
+                  <span className='text-xs text-[#4c4c4c]'>Tu</span>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5">
                     <path fillRule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
                   </svg>

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "../modules/axios";
-import { Button, TextInput, Label, Modal, Checkbox, Select } from "flowbite-react";
-import Input from "./Input";
+import { TextInput, Label, Modal, Select } from "flowbite-react";
 
 export default function MainGet() {
   const [profile, setProfile] = useState(null);
   const [openModal, setOpenModal] = useState(false);
+  const [experience, setExperience] = useState(null);
+  const [dati, setDati] = useState([]);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -26,67 +27,69 @@ export default function MainGet() {
     fetchProfile();
   }, []);
 
-  // axios
-  //   .put("/profile/me")
-  //   .then((response) => {
-  //     console.log("Data received:", response.data);
-  //   })
-  //   .catch((error) => {
-  //     if (error.response) {
-  //       console.error(`HTTP error: ${error.response.status}`);
-  //     } else if (error.request) {
-  //       console.error("Request error: No response received");
-  //     } else {
-  //       console.error("Error:", error.message);
-  //     }
-  //   });
 
-  // const [experience, setExperience] = useState(null);
+  const updateDati = (id) => {
 
-  // useEffect(() => {
-  //   const fetchExperience = async () => {
-  //     try {
-  //       const response = await axios.get("/profile/:userId/experiences");
-  //       setExperience(response.data);
-  //       console.log(response.data);
-  //     } catch (error) {
-  //       if (error.response) {
-  //         console.error(`HTTP error: ${error.response.status}`);
-  //       } else if (error.request) {
-  //         console.error("Request error: No response received");
-  //       } else {
-  //         console.error("Error:", error.message);
-  //       }
-  //     }
-  //   };
-  //   fetchExperience();
-  // }, []);
+    axios.put(`/profile/${id}`)
+      .then((response) => {
+        console.log("Data received:", response.data);
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.error(`HTTP error: ${error.response.status}`);
+        } else if (error.request) {
+          console.error("Request error: No response received");
+        } else {
+          console.error("Error:", error.message);
+        }
+      });
+  }
+
+
+  useEffect(() => {
+    const fetchExperience = async () => {
+      try {
+        const response = await axios.get("/profile/:userId/experiences");
+        setExperience(response.data);
+        console.log(response.data);
+      } catch (error) {
+        if (error.response) {
+          console.error(`HTTP error: ${error.response.status}`);
+        } else if (error.request) {
+          console.error("Request error: No response received");
+        } else {
+          console.error("Error:", error.message);
+        }
+      }
+    };
+    fetchExperience();
+  }, []);
 
   return (
     <>
       {profile ? (
-        <div className="container mx-auto flex mt-7">
+        <div className="container mx-auto flex mt-7 px-[70px]">
           <div className="w-[1200px] flex flex-col relative">
-            <div className="h-[300px] w-[100%] bg-blue-800"></div>
-            <div>
+            <div className="h-[300px] w-[100%] bg-blue-800 rounded-t-lg"></div>
+            <div className="bg-[#fff] px-5 pb-3 rounded-b-lg border-[1px]">
               <div>
                 <img
-                  className="w-[150px] rounded-full absolute top-[220px] left-[20px]"
+                  className="w-[150px] rounded-full absolute top-[220px] left-[20px] border-[5px] border-white"
                   src={profile.image}
                   alt="immagine profilo"
                 />
               </div>
               <div className="mt-[80px]">
-                <p className="py-1">
+                <h2 className="py-1 text-2xl font-semibold">
                   {profile.name} {profile.surname}
-                </p>
+                </h2>
                 <p>{profile.title}</p>
                 <p className="py-2">{profile.area}</p>
               </div>
             </div>
-            <div className="w-[100%] h-[300px] bg-[#f4f2ee] my-10 flex justify-between">
-              <h5>Experiences</h5>
-              <div className="flex">
+            <div className="w-[100%] h-[200px] bg-[#fff] my-2 flex justify-between rounded-lg p-5 border-[1px]">
+              <h3 className="text-2xl">Esperienze</h3>
+              <div className="flex gap-[12px]">
     
      {/*Inizio modale*/}
 
@@ -109,86 +112,114 @@ export default function MainGet() {
         <Modal.Header>Aggiungi Esperienza</Modal.Header>
         <Modal.Body>
           
-        <form className="flex flex-col gap-4 w-[100%]">
+        <form className="flex flex-col gap-4 w-[100%] pb-[20px] border-b-[1px] mb-[15px]">
           <div>
-          <div className="mb-2 block">
-            <Label htmlFor="email2" value="Your email" />
+            <div className="block">
+              <Label htmlFor="role" value="Competenza*" />
+              <TextInput id="role" type="text" placeholder="Competenza (es. React Developer)" required shadow />
+            </div>
           </div>
-          <TextInput id="email2" type="email" placeholder="name@flowbite.com" required shadow />
-      </div>
 
-      <div>
-        <div className="mb-2 block">
-          <Label htmlFor="password2" value="Your password" />
-        </div>
-        <Label htmlFor="date" value="Data di inizio" />
-        <div className="flex w-[100%]">
-        
-          <div className="w-[50%] mr-3">
-            <Select required>
-              <option>Gennaio</option>
-              <option>Febbraio</option>
-              <option>Marzo</option>
-              <option>Aprile</option>
-              <option>Maggio</option>
-              <option>Giugno</option>
-              <option>Luglio</option>
-              <option>Agosto</option>
-              <option>Settembre</option>
-              <option>Ottobre</option>
-              <option>Novembre</option>
-              <option>Dicembre</option>
-            </Select>
+          <div>
+            <div className="mb-4 block">
+              <Label htmlFor="company" value="Azienda" />
+              <TextInput id="role" type="text" placeholder="Competenza (es. React Developer)" required shadow />
+            </div>
+
+            <Label htmlFor="date" value="Data di inizio" />
+            <div className="mb-4 flex w-[100%]">
+            
+              <div className="w-[50%] mr-3">
+                <Select required>
+                  <option>Gennaio</option>
+                  <option>Febbraio</option>
+                  <option>Marzo</option>
+                  <option>Aprile</option>
+                  <option>Maggio</option>
+                  <option>Giugno</option>
+                  <option>Luglio</option>
+                  <option>Agosto</option>
+                  <option>Settembre</option>
+                  <option>Ottobre</option>
+                  <option>Novembre</option>
+                  <option>Dicembre</option>
+                </Select>
+              </div>
+              <div className="w-[50%]"> 
+                <Select required>
+                  <option>2024</option>
+                  <option>2023</option>
+                  <option>2022</option>
+                  <option>2021</option>
+                  <option>2020</option>
+                  <option>2019</option>
+                  <option>2018</option>
+                  <option>2017</option>
+                  <option>2016</option>
+                  <option>2015</option>
+                  <option>2014</option>
+                </Select>
+              </div>
+            </div>
+
+            <Label htmlFor="date" value="Data di fine" />
+            <div className="flex w-[100%]">
+            
+              <div className="w-[50%] mr-3">
+                <Select required>
+                  <option>Gennaio</option>
+                  <option>Febbraio</option>
+                  <option>Marzo</option>
+                  <option>Aprile</option>
+                  <option>Maggio</option>
+                  <option>Giugno</option>
+                  <option>Luglio</option>
+                  <option>Agosto</option>
+                  <option>Settembre</option>
+                  <option>Ottobre</option>
+                  <option>Novembre</option>
+                  <option>Dicembre</option>
+                </Select>
+              </div>
+              <div className="w-[50%]"> 
+                <Select required>
+                  <option>2024</option>
+                  <option>2023</option>
+                  <option>2022</option>
+                  <option>2021</option>
+                  <option>2020</option>
+                  <option>2019</option>
+                  <option>2018</option>
+                  <option>2017</option>
+                  <option>2016</option>
+                  <option>2015</option>
+                  <option>2014</option>
+                </Select>
+              </div>
+            </div>
+            
           </div>
-          <div className="w-[50%]"> 
-            <Select required>
-              <option>2024</option>
-              <option>2023</option>
-              <option>2022</option>
-              <option>2021</option>
-              <option>2020</option>
-              <option>2019</option>
-              <option>2018</option>
-              <option>2017</option>
-              <option>2016</option>
-              <option>2015</option>
-              <option>2014</option>
-            </Select>
+          <div>
+              <div className="block">
+                <Label htmlFor="description" value="Descrizione" />
+              </div>
+              <TextInput id="description" type="text" />
           </div>
-        </div>
-        
-      </div>
-      <div>
-        <div className="mb-2 block">
-          <Label htmlFor="repeat-password" value="Repeat password" />
-        </div>
-        <TextInput id="repeat-password" type="password" required shadow />
-      </div>
-      <div>
-        <div className="mb-2 block">
-          <Label htmlFor="email2" value="Your email" />
-        </div>
-        <TextInput id="email2" type="email" placeholder="name@flowbite.com" required shadow />
-      </div>
-      <div>
-        <div className="mb-2 block">
-          <Label htmlFor="password2" value="Your password" />
-        </div>
-        <TextInput id="password2" type="password" required shadow />
-      </div>
-      <div>
-        <div className="mb-2 block">
-          <Label htmlFor="repeat-password" value="Repeat password" />
-        </div>
-        <TextInput id="repeat-password" type="password" required shadow />
-      </div>
+          <div>
+            <div>
+              <Label htmlFor="location" value="Luogo" />
+            </div>
+            <TextInput id="location" type="text" />
+          </div>        
       
-      <Button type="submit">Register new account</Button>
-    </form>
+        </form>
+        <div className="flex justify-between">
+          <button className="font-semibold text-[#181818] rounded-lg px-5 py-1 hover:bg-[#f4f2ee]" type="submit">Elimina esperienza</button>
+          <button className="text-white font-semibold rounded-xl bg-[#0a66c2] w-[10%] px-5 py-1 flex justify-center" type="submit">Salva</button>
+        </div>
+
         </Modal.Body>
-        <Modal.Footer>
-        </Modal.Footer>
-      </Modal></span>
+        </Modal></span>
 
                 <p>
                   <svg
@@ -209,8 +240,19 @@ export default function MainGet() {
               </div>
             </div>
           </div>
-          <div className="w-[200px] ml-7">
-            <h1>Ciao</h1>
+          <div className="w-[300px] ml-7 px-4 h-[600px] bg-[#fff] border-[2px] rounded-lg">
+            <h2 className="font-semibold mt-4">Altri profili simili</h2>
+            <div className="flex gap-5 mt-3">
+              <img className="border-[2px] rounded-full p-3" src="ciao" alt="img" />
+              <div>
+                <p>Abdul Elrahman Mohamed</p>
+                <p>Description</p>
+                <p>Description</p>
+              </div>
+            </div>
+            <div className="flex items-center justify-center mt-3 border-b-[1px]">
+              <button className="border-[1px] border-black rounded-full px-5 py-1 mb-5">Messaggio</button>
+            </div>
           </div>
         </div>
       ) : (

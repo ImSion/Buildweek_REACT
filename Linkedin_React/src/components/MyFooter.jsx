@@ -4,9 +4,9 @@ import { BsDribbble, BsFacebook, BsGithub, BsInstagram, BsTwitter } from "react-
 
 export default function MyFooter() {
   return (
-    <Footer >
+    <Footer className="fixed bottom-0">
       <div className="w-full bg-[#f4f2ee]">
-        <div className="grid w-full grid-cols-2 gap-8 px-6 py-8 md:grid-cols-4">
+        <div className="flex flex-wrap justify-center gap-[150px] mt-5">
           <div>
             <FooterTitle title="Company" />
             <FooterLinkGroup col>

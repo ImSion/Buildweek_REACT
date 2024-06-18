@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "../modules/axios";
-import { Button, Modal } from "flowbite-react";
+import { Button, TextInput, Label, Modal, Checkbox, Select } from "flowbite-react";
+import Input from "./Input";
 
 export default function MainGet() {
   const [profile, setProfile] = useState(null);
-  const [openModal, setOpenModal] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -86,23 +87,104 @@ export default function MainGet() {
             <div className="w-[100%] h-[300px] bg-[#f4f2ee] my-10 flex justify-between">
               <h5>Experiences</h5>
               <div className="flex">
-                {/*Inizio modale*/}
+    
+     {/*Inizio modale*/}
 
-                <span className="rounded-full bg-white h-[25px]"> <Button onClick={() => setOpenModal(true)}>Toggle modal</Button>
+                <span className="rounded-full bg-white h-[25px]"><div  onClick={() => setOpenModal(true)}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="size-6">
+                  <path
+                   strokeLinecap="round"
+                   strokeLinejoin="round"
+                   d="M12 4.5v15m7.5-7.5h-15"
+                  />
+                  </svg>
+                </div>
       <Modal show={openModal} onClose={() => setOpenModal(false)}>
-        <Modal.Header>Terms of Service</Modal.Header>
+        <Modal.Header>Aggiungi Esperienza</Modal.Header>
         <Modal.Body>
-          <div className="space-y-6">
-            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-              With less than a month to go before the European Union enacts new consumer privacy laws for its citizens,
-              companies around the world are updating their terms of service agreements to comply.
-            </p>
-            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-              The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant
-              to ensure a common set of data rights in the European Union. It requires organizations to notify users as
-              soon as possible of high-risk data breaches that could personally affect them.
-            </p>
+          
+        <form className="flex flex-col gap-4 w-[100%]">
+          <div>
+          <div className="mb-2 block">
+            <Label htmlFor="email2" value="Your email" />
           </div>
+          <TextInput id="email2" type="email" placeholder="name@flowbite.com" required shadow />
+      </div>
+
+      <div>
+        <div className="mb-2 block">
+          <Label htmlFor="password2" value="Your password" />
+        </div>
+        <Label htmlFor="date" value="Data di inizio" />
+        <div className="flex w-[100%]">
+        
+          <div className="w-[50%] mr-3">
+            <Select required>
+              <option>Gennaio</option>
+              <option>Febbraio</option>
+              <option>Marzo</option>
+              <option>Aprile</option>
+              <option>Maggio</option>
+              <option>Giugno</option>
+              <option>Luglio</option>
+              <option>Agosto</option>
+              <option>Settembre</option>
+              <option>Ottobre</option>
+              <option>Novembre</option>
+              <option>Dicembre</option>
+            </Select>
+          </div>
+          <div className="w-[50%]"> 
+            <Select required>
+              <option>2024</option>
+              <option>2023</option>
+              <option>2022</option>
+              <option>2021</option>
+              <option>2020</option>
+              <option>2019</option>
+              <option>2018</option>
+              <option>2017</option>
+              <option>2016</option>
+              <option>2015</option>
+              <option>2014</option>
+            </Select>
+          </div>
+        </div>
+        
+      </div>
+      <div>
+        <div className="mb-2 block">
+          <Label htmlFor="repeat-password" value="Repeat password" />
+        </div>
+        <TextInput id="repeat-password" type="password" required shadow />
+      </div>
+      <div>
+        <div className="mb-2 block">
+          <Label htmlFor="email2" value="Your email" />
+        </div>
+        <TextInput id="email2" type="email" placeholder="name@flowbite.com" required shadow />
+      </div>
+      <div>
+        <div className="mb-2 block">
+          <Label htmlFor="password2" value="Your password" />
+        </div>
+        <TextInput id="password2" type="password" required shadow />
+      </div>
+      <div>
+        <div className="mb-2 block">
+          <Label htmlFor="repeat-password" value="Repeat password" />
+        </div>
+        <TextInput id="repeat-password" type="password" required shadow />
+      </div>
+      
+      <Button type="submit">Register new account</Button>
+    </form>
         </Modal.Body>
         <Modal.Footer>
         </Modal.Footer>
@@ -138,17 +220,4 @@ export default function MainGet() {
   );
 }
 
-<svg
-  xmlns="http://www.w3.org/2000/svg"
-  fill="none"
-  viewBox="0 0 24 24"
-  strokeWidth={1.5}
-  stroke="currentColor"
-  className="size-6"
->
-  <path
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    d="M12 4.5v15m7.5-7.5h-15"
-  />
-</svg>;
+

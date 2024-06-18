@@ -1,10 +1,10 @@
-import React, { useEffect, useState,  } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "../modules/axios";
-import { Button, Checkbox, Label, Modal, TextInput } from "flowbite-react";
-import { useRef, useState } from "react";
+import { Button, Modal } from "flowbite-react";
 
 export default function MainGet() {
   const [profile, setProfile] = useState(null);
+  const [openModal, setOpenModal] = useState(true);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -40,28 +40,27 @@ export default function MainGet() {
   //     }
   //   });
 
- 
-    // const [experience, setExperience] = useState(null);
-  
-    // useEffect(() => {
-    //   const fetchExperience = async () => {
-    //     try {
-    //       const response = await axios.get("/profile/:userId/experiences");
-    //       setExperience(response.data);
-    //       console.log(response.data);
-    //     } catch (error) {
-    //       if (error.response) {
-    //         console.error(`HTTP error: ${error.response.status}`);
-    //       } else if (error.request) {
-    //         console.error("Request error: No response received");
-    //       } else {
-    //         console.error("Error:", error.message);
-    //       }
-    //     }
-    //   };
-    //   fetchExperience();
-    // }, []);
-  
+  // const [experience, setExperience] = useState(null);
+
+  // useEffect(() => {
+  //   const fetchExperience = async () => {
+  //     try {
+  //       const response = await axios.get("/profile/:userId/experiences");
+  //       setExperience(response.data);
+  //       console.log(response.data);
+  //     } catch (error) {
+  //       if (error.response) {
+  //         console.error(`HTTP error: ${error.response.status}`);
+  //       } else if (error.request) {
+  //         console.error("Request error: No response received");
+  //       } else {
+  //         console.error("Error:", error.message);
+  //       }
+  //     }
+  //   };
+  //   fetchExperience();
+  // }, []);
+
   return (
     <>
       {profile ? (
@@ -77,66 +76,56 @@ export default function MainGet() {
                 />
               </div>
               <div className="mt-[80px]">
-              <p className="py-1">{profile.name} {profile.surname}</p>
-              <p>{profile.title}</p>
-              <p className="py-2">{profile.area}</p>
+                <p className="py-1">
+                  {profile.name} {profile.surname}
+                </p>
+                <p>{profile.title}</p>
+                <p className="py-2">{profile.area}</p>
               </div>
             </div>
             <div className="w-[100%] h-[300px] bg-[#f4f2ee] my-10 flex justify-between">
-            <h5>Experiences</h5>
-            <div className="flex">
+              <h5>Experiences</h5>
+              <div className="flex">
+                {/*Inizio modale*/}
 
-          {/*Inizio modale*/}
-          
-            <span className="rounded-full bg-white h-[25px]">
-            <Button onClick={() => setOpenModal(true)}>Toggle modal</Button>
-      <Modal show={openModal} size="md" popup onClose={() => setOpenModal(false)} initialFocus={emailInputRef}>
-        <Modal.Header />
+                <span className="rounded-full bg-white h-[25px]"> <Button onClick={() => setOpenModal(true)}>Toggle modal</Button>
+      <Modal show={openModal} onClose={() => setOpenModal(false)}>
+        <Modal.Header>Terms of Service</Modal.Header>
         <Modal.Body>
           <div className="space-y-6">
-            <h3 className="text-xl font-medium text-gray-900 dark:text-white">Sign in to our platform</h3>
-            <div>
-              <div className="mb-2 block">
-                <Label htmlFor="email" value="Your email" />
-              </div>
-              <TextInput id="email" ref={emailInputRef} placeholder="name@company.com" required />
-            </div>
-            <div>
-              <div className="mb-2 block">
-                <Label htmlFor="password" value="Your password" />
-              </div>
-              <TextInput id="password" type="password" required />
-            </div>
-            <div className="flex justify-between">
-              <div className="flex items-center gap-2">
-                <Checkbox id="remember" />
-                <Label htmlFor="remember">Remember me</Label>
-              </div>
-              <a href="#" className="text-sm text-cyan-700 hover:underline dark:text-cyan-500">
-                Lost Password?
-              </a>
-            </div>
-            <div className="w-full">
-              <Button>Log in to your account</Button>
-            </div>
-            <div className="flex justify-between text-sm font-medium text-gray-500 dark:text-gray-300">
-              Not registered?&nbsp;
-              <a href="#" className="text-cyan-700 hover:underline dark:text-cyan-500">
-                Create account
-              </a>
-            </div>
+            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+              With less than a month to go before the European Union enacts new consumer privacy laws for its citizens,
+              companies around the world are updating their terms of service agreements to comply.
+            </p>
+            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+              The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant
+              to ensure a common set of data rights in the European Union. It requires organizations to notify users as
+              soon as possible of high-risk data breaches that could personally affect them.
+            </p>
           </div>
         </Modal.Body>
-      </Modal>
-            </span>
+        <Modal.Footer>
+        </Modal.Footer>
+      </Modal></span>
 
-
-<p><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-  <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
-</svg>
-</p>
-</div>
-          </div>
+                <p>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="size-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"
+                    />
+                  </svg>
+                </p>
+              </div>
+            </div>
           </div>
           <div className="w-[200px] ml-7">
             <h1>Ciao</h1>
@@ -149,8 +138,17 @@ export default function MainGet() {
   );
 }
 
-
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-</svg>
-
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  fill="none"
+  viewBox="0 0 24 24"
+  strokeWidth={1.5}
+  stroke="currentColor"
+  className="size-6"
+>
+  <path
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    d="M12 4.5v15m7.5-7.5h-15"
+  />
+</svg>;

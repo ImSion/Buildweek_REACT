@@ -2,6 +2,7 @@
 import React from 'react'
 import Input from './Input'
 import { Dropdown } from 'flowbite-react'
+import { Link } from 'react-router-dom';
 
 export default function MyNav({ search, setSearch, handleChange }) {
   return (  
@@ -20,14 +21,15 @@ export default function MyNav({ search, setSearch, handleChange }) {
             <ul className="font-medium flex flex-col justify-center items-center p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
 
               <li>
-                <button className='flex flex-col items-center'>               
+                <Link to='/' >
+                <button className='flex flex-col items-center text-xs text-[#4c4c4c] hover:text-black'>               
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" className='text-[#4c4c4c] hover:text-black h-[24px] w-[24px]' focusable="false">
                   <path d="M23 9v2h-2v7a3 3 0 01-3 3h-4v-6h-4v6H6a3 3 0 01-3-3v-7H1V9l11-7 5 3.18V2h3v5.09z"></path>
-                  </svg>
-                  <a href="#" className="block px-3 text-[#4c4c4c] hover:text-black dark:text-white text-xs" aria-current="page">
-                    Home
-                  </a>
+                  </svg>                 
+                  
+                  home
                 </button>
+                </Link>
               </li>
 
               <li>

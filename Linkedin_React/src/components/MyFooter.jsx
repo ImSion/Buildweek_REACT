@@ -4,7 +4,7 @@ import { BsDribbble, BsFacebook, BsGithub, BsInstagram, BsTwitter } from "react-
 
 export default function MyFooter() {
   return (
-    <Footer className="fixed bottom-0">
+    <Footer>
       <div className="w-full bg-[#f4f2ee]">
         <div className="flex flex-wrap justify-center gap-[150px] mt-5">
           <div>

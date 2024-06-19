@@ -4,6 +4,7 @@ import MyNav from './components/MyNav'
 import Main from './components/Main'
 import MyFooter from './components/MyFooter'
 import AltriProfiliDetail from './components/AltriProfiliDetail'
+import Experience from './components/Experience'
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -19,6 +20,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Main profiles={profiles} setProfiles={setProfiles}/>}></Route>
         <Route path='/profile/:id' element={<AltriProfiliDetail profiles={profiles} setProfiles={setProfiles}/>}></Route>
+        <Route path='/experience/' element={<Experience />}></Route>
       </Routes>
       <MyFooter />
     </Router>

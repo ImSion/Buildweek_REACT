@@ -21,11 +21,22 @@ export default function Modale({ id, experience, setExperience, openModal, setOp
             endDate: inputEndDate,
             description: inputDescription,
             area: inputArea
-        })
-        
+        })        
         
         await fetchExperience(experience)
+    }
 
+    const updateExperience = async () => {
+        setExperience({
+            role: inputRole,
+            company: inputCompany,
+            startDate: inputStartDate,
+            endDate: inputEndDate,
+            description: inputDescription,
+            area: inputArea
+        })        
+        
+        await updateFetchExperience(experience)
     }
 
     const fetchExperience = async (experience) => {
@@ -43,7 +54,24 @@ export default function Modale({ id, experience, setExperience, openModal, setOp
             console.error("Error:", error.message);
           }
         }
-      }; 
+    }; 
+
+    const updateFetchExperience = async (experience) => {
+      try {
+          console.log(experience.value)
+          console.log(id)
+        const response = await axios.post(`/profile/:${id}/experiences`,experience);
+        console.log(response.data);
+      } catch (error) {
+        if (error.response) {
+          console.error(`HTTP error: ${error.response.status}`);
+        } else if (error.request) {
+          console.error("Request error: No response received");
+        } else {
+          console.error("Error:", error.message);
+        }
+      }
+  }; 
     
     
   return (
@@ -101,7 +129,7 @@ export default function Modale({ id, experience, setExperience, openModal, setOp
                   <button className="text-white font-semibold rounded-xl bg-[#0a66c2] w-[10%] px-5 py-1 flex justify-center" type="submit" onClick={(e) => AddExperience()}>Salva</button>
                 </div>
               </Modal.Body>
-        </Modal>
+          </Modal>
         </button>
     </>
   )

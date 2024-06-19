@@ -68,13 +68,13 @@ export default function MainGet() {
   return (
     <>
       {profile ? (
-        <div className="container mx-auto flex mt-7 px-[70px]">
-          <div className="w-[1200px] flex flex-col relative">
-            <div className="h-[300px] w-[100%] bg-blue-800 rounded-t-lg"></div>
-            <div className="bg-[#fff] px-5 pb-3 rounded-b-lg border-[1px]">
+        <div className="container mx-auto flex mt-7 px-[70px] items-center justify-center">
+          <div className="w-[804px] flex flex-col relative">
+            <div className="h-[200px] w-[100%] bg-blue-800 rounded-t-lg"></div>
+            <div className="bg-[#fff] h-[300px] px-5 pb-3 rounded-b-lg border-[1px]">
               <div>
                 <img
-                  className="w-[150px] rounded-full absolute top-[220px] left-[20px] border-[5px] border-white"
+                  className="w-[150px] rounded-full absolute top-[100px] left-[30px] border-[5px] border-white"
                   src={profile.image}
                   alt="immagine profilo"
                 />

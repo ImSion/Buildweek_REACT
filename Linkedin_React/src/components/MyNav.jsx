@@ -7,7 +7,7 @@ export default function MyNav({ search, setSearch, handleChange }) {
   return (  
       <nav className="bg-white border-gray-200 dark:bg-gray-900 p-2 border-b-[1px]">
 
-        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-3">
+        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-[52px]">
 
           <div className='flex items-center'>
             <svg xmlns="http://www.w3.org/2000/svg" className='mx-5 w-10 h-10 text-[#0a66c2]' viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" focusable="false">

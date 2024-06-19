@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function ButtonExperience({setOpenModal}) {
+export default function ButtonExperience({setOpenModal, setExperience, profile, experienceArray, profiles, setProfiles}) {
   return (
     <div className="flex gap-[20px]">
         <button onClick={() => setOpenModal(true)}>

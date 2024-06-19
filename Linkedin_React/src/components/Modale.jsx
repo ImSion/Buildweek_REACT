@@ -1,8 +1,51 @@
 import { Label, Modal, Select, TextInput } from 'flowbite-react'
-import React from 'react'
+import React, { useState } from 'react'
+import axios from '../modules/axios';
+import Input from './Input';
 
-export default function Modale() {
+export default function Modale({id}) {
+    const [experience, setExperience] = useState({});
+    const [inputRole, setInputRole] = useState();
+    const [inputCompany, setInputCompany] = useState();
+    const [inputStartDate, setInputStartDate] = useState();
+    const [inputEndDate, setInputEndDate] = useState();
+    const [inputDescription, setInputDescription] = useState();
+    const [inputArea, setInputArea] = useState();
+    
 
+    const AddExperience = async () => {
+        setExperience({
+            role: inputRole,
+            company: inputCompany,
+            startDate: inputStartDate,
+            endDate: inputEndDate,
+            description: inputDescription,
+            area: inputArea
+        })
+        
+        
+        await fetchExperience(experience)
+
+    }
+
+    const fetchExperience = async (experience) => {
+        try {
+            console.log(experience.value)
+            console.log(id)
+          const response = await axios.post(`/profile/:${id}/experiences`,experience);
+          console.log(response.data);
+        } catch (error) {
+          if (error.response) {
+            console.error(`HTTP error: ${error.response.status}`);
+          } else if (error.request) {
+            console.error("Request error: No response received");
+          } else {
+            console.error("Error:", error.message);
+          }
+        }
+      };
+
+  
     
     const [openModal, setOpenModal] = useState(false);
   return (
@@ -30,106 +73,49 @@ export default function Modale() {
           <div>
             <div className="block">
               <Label htmlFor="role" value="Competenza*" />
-              <TextInput id="role" type="text" placeholder="Competenza (es. React Developer)" required shadow />
+              <TextInput id="role" type="text" placeholder="Competenza (es. React Developer)" required shadow 
+              value={inputRole}
+            onChange={(e) => setInputRole(e.target.value)}/>
             </div>
           </div>
 
           <div>
             <div className="mb-4 block">
               <Label htmlFor="company" value="Azienda" />
-              <TextInput id="role" type="text" placeholder="Competenza (es. React Developer)" required shadow />
+              <TextInput id="role" type="text" placeholder="Competenza (es. React Developer)" required shadow 
+              value={inputCompany}
+              onChange={(e) => setInputCompany(e.target.value)}/>
             </div>
 
             <Label htmlFor="date" value="Data di inizio" />
-            <div className="mb-4 flex w-[100%]">
-            
-              <div className="w-[50%] mr-3">
-                <Select required>
-                  <option>Gennaio</option>
-                  <option>Febbraio</option>
-                  <option>Marzo</option>
-                  <option>Aprile</option>
-                  <option>Maggio</option>
-                  <option>Giugno</option>
-                  <option>Luglio</option>
-                  <option>Agosto</option>
-                  <option>Settembre</option>
-                  <option>Ottobre</option>
-                  <option>Novembre</option>
-                  <option>Dicembre</option>
-                </Select>
-              </div>
-              <div className="w-[50%]"> 
-                <Select required>
-                  <option>2024</option>
-                  <option>2023</option>
-                  <option>2022</option>
-                  <option>2021</option>
-                  <option>2020</option>
-                  <option>2019</option>
-                  <option>2018</option>
-                  <option>2017</option>
-                  <option>2016</option>
-                  <option>2015</option>
-                  <option>2014</option>
-                </Select>
-              </div>
-            </div>
+            <TextInput type="date" value={inputStartDate}
+            onChange={(e) => setInputStartDate(e.target.value)} />
+           
 
             <Label htmlFor="date" value="Data di fine" />
-            <div className="flex w-[100%]">
-            
-              <div className="w-[50%] mr-3">
-                <Select required>
-                  <option>Gennaio</option>
-                  <option>Febbraio</option>
-                  <option>Marzo</option>
-                  <option>Aprile</option>
-                  <option>Maggio</option>
-                  <option>Giugno</option>
-                  <option>Luglio</option>
-                  <option>Agosto</option>
-                  <option>Settembre</option>
-                  <option>Ottobre</option>
-                  <option>Novembre</option>
-                  <option>Dicembre</option>
-                </Select>
-              </div>
-              <div className="w-[50%]"> 
-                <Select required>
-                  <option>2024</option>
-                  <option>2023</option>
-                  <option>2022</option>
-                  <option>2021</option>
-                  <option>2020</option>
-                  <option>2019</option>
-                  <option>2018</option>
-                  <option>2017</option>
-                  <option>2016</option>
-                  <option>2015</option>
-                  <option>2014</option>
-                </Select>
-              </div>
-            </div>
+            <TextInput type="date"value={inputEndDate}
+            onChange={(e) => setInputEndDate(e.target.value)} />
             
           </div>
           <div>
               <div className="block">
                 <Label htmlFor="description" value="Descrizione" />
               </div>
-              <TextInput id="description" type="text" />
+              <TextInput id="description" type="text" value={inputDescription}
+            onChange={(e) => setInputDescription(e.target.value)} />
           </div>
           <div>
             <div>
               <Label htmlFor="location" value="Luogo" />
             </div>
-            <TextInput id="location" type="text" />
+            <TextInput id="location" type="text" value={inputArea}
+            onChange={(e) => setInputArea(e.target.value)} />
           </div>        
       
         </form>
         <div className="flex justify-between">
           <button className="font-semibold text-[#181818] rounded-lg px-5 py-1 hover:bg-[#f4f2ee]" type="submit">Elimina esperienza</button>
-          <button className="text-white font-semibold rounded-xl bg-[#0a66c2] w-[10%] px-5 py-1 flex justify-center" type="submit">Salva</button>
+          <button className="text-white font-semibold rounded-xl bg-[#0a66c2] w-[10%] px-5 py-1 flex justify-center" type="submit" onClick={(e) => AddExperience()}>Salva</button>
         </div>
 
         </Modal.Body>

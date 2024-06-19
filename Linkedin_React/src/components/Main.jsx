@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "../modules/axios";
 import AltriProfili from "./AltriProfili";
 import Modale from "./Modale";
+import ButtonExperience from "./ButtonExperience";
+
 
 export default function MainGet() {
   const [profile, setProfile] = useState(null);
-  const [experience, setExperience] = useState(null);
-  const [dati, setDati] = useState([]);
+  const [experience, setExperience] = useState({});
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -28,22 +30,22 @@ export default function MainGet() {
   }, []);
 
 
-  const updateDati = (id) => {
+  // const updateDati = (id) => {
 
-    axios.put(`/profile/${id}`)
-      .then((response) => {
-        console.log("Data received:", response.data);
-      })
-      .catch((error) => {
-        if (error.response) {
-          console.error(`HTTP error: ${error.response.status}`);
-        } else if (error.request) {
-          console.error("Request error: No response received");
-        } else {
-          console.error("Error:", error.message);
-        }
-      });
-  }
+  //   axios.put(`/profile/${id}`)
+  //     .then((response) => {
+  //       console.log("Data received:", response.data);
+  //     })
+  //     .catch((error) => {
+  //       if (error.response) {
+  //         console.error(`HTTP error: ${error.response.status}`);
+  //       } else if (error.request) {
+  //         console.error("Request error: No response received");
+  //       } else {
+  //         console.error("Error:", error.message);
+  //       }
+  //     });
+  // }
 
 
   useEffect(() => {
@@ -71,7 +73,7 @@ export default function MainGet() {
         <div className="container mx-auto flex mt-7 px-[70px] items-center justify-center">
           <div className="w-[804px] flex flex-col relative">
             <div className="h-[200px] w-[100%] bg-blue-800 rounded-t-lg"></div>
-            <div className="bg-[#fff] h-[300px] px-5 pb-3 rounded-b-lg border-[1px]">
+            <div className="bg-[#fff] p-5 pb-3 rounded-b-lg border-[1px]">
               <div>
                 <img
                   className="w-[150px] rounded-full absolute top-[100px] left-[30px] border-[5px] border-white"
@@ -87,30 +89,34 @@ export default function MainGet() {
                 <p className="py-2">{profile.area}</p>
               </div>
             </div>
-            <div className="w-[100%] h-[200px] bg-[#fff] my-2 flex justify-between rounded-lg p-5 border-[1px]">
-              <h3 className="text-2xl">Esperienze</h3>
-              <div className="flex gap-[12px]">
-    
-     {/*Inizio modale*/}
-
-                <Modale id={profile._id} />
-
-                <p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="size-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"
-                    />
-                  </svg>
-                </p>
+            <div className="w-[100%] bg-[#fff] my-2 rounded-lg border-[1px] p-5">
+              <div className="flex justify-between">
+                <h3 className="text-2xl">Esperienze</h3>
+                <div className="flex items-start gap-[12px]">
+                  <Modale experience={experience} setExperience={setExperience} openModal={openModal} setOpenModal={setOpenModal} id={profile._id} />
+                  <ButtonExperience setOpenModal={setOpenModal}/>
+                </div>
+              </div>
+              <div className="mt-4">
+              <div>
+                {experience.slice(3,6).map((element) => (
+                    <div className="border-red-500">
+                        <div className="flex gap-[20px] mb-4">
+                          <div>
+                            <img className="rounded-full" src="https://picsum.photos/50/50" alt="img" />
+                          </div>
+                          <div className="flex flex-col">
+                            <h5 className="font-semibold">{element.role}</h5>
+                            <h4>{element.company}</h4>
+                            <span>{element.startDate} - {element.endDate}</span>
+                            <span className="mb-3">{element.area}</span>
+                            <p>{element.description}</p>
+                          </div>
+                        </div>                      
+                    </div>
+                    
+                ))}
+              </div>
               </div>
             </div>
           </div>

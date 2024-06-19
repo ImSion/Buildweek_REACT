@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "../modules/axios";
 import { TextInput, Label, Modal, Select } from "flowbite-react";
+import AltriProfili from "./AltriProfili";
 
 export default function MainGet() {
   const [profile, setProfile] = useState(null);
@@ -240,19 +241,9 @@ export default function MainGet() {
               </div>
             </div>
           </div>
-          <div className="w-[300px] ml-7 px-4 h-[600px] bg-[#fff] border-[2px] rounded-lg">
-            <h2 className="font-semibold mt-4">Altri profili simili</h2>
-            <div className="flex gap-5 mt-3">
-              <img className="border-[2px] rounded-full p-3" src="ciao" alt="img" />
-              <div>
-                <p>Abdul Elrahman Mohamed</p>
-                <p>Description</p>
-                <p>Description</p>
-              </div>
-            </div>
-            <div className="flex items-center justify-center mt-3 border-b-[1px]">
-              <button className="border-[1px] border-black rounded-full px-5 py-1 mb-5">Messaggio</button>
-            </div>
+          <div className="w-[300px] ml-7 px-4 h-[700px] bg-[#fff] border-[2px] rounded-lg">
+          <h2 className="font-semibold mt-4">Altri profili simili</h2>
+            <AltriProfili />
           </div>
         </div>
       ) : (

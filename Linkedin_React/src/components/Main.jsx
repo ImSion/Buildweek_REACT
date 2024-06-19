@@ -3,12 +3,15 @@ import axios from "../modules/axios";
 import AltriProfili from "./AltriProfili";
 import Modale from "./Modale";
 import ButtonExperience from "./ButtonExperience";
+import hamburger from '../assets/pngwing.com.png'
 
 
-export default function MainGet() {
+export default function MainGet({ profiles, setProfiles}) {
   const [profile, setProfile] = useState(null);
   const [experience, setExperience] = useState({});
   const [openModal, setOpenModal] = useState(false);
+
+  const experienceArray = Object.values(experience);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -70,7 +73,7 @@ export default function MainGet() {
   return (
     <>
       {profile ? (
-        <div className="container mx-auto flex mt-7 px-[70px] items-center justify-center">
+        <div className="container mx-auto flex mt-7 px-[70px] items-start justify-center">
           <div className="w-[804px] flex flex-col relative">
             <div className="h-[200px] w-[100%] bg-blue-800 rounded-t-lg"></div>
             <div className="bg-[#fff] p-5 pb-3 rounded-b-lg border-[1px]">
@@ -99,22 +102,21 @@ export default function MainGet() {
               </div>
               <div className="mt-4">
               <div>
-                {experience.slice(3,6).map((element) => (
+                {experienceArray.slice(3,6).map((element) => (
                     <div className="border-red-500">
                         <div className="flex gap-[20px] mb-4">
                           <div>
-                            <img className="rounded-full" src="https://picsum.photos/50/50" alt="img" />
+                            <img className="rounded-full w-[50px] h-[50px]" src={hamburger} alt="img" />
                           </div>
                           <div className="flex flex-col">
                             <h5 className="font-semibold">{element.role}</h5>
                             <h4>{element.company}</h4>
                             <span>{element.startDate} - {element.endDate}</span>
-                            <span className="mb-3">{element.area}</span>
+                            <span className="mb-3 italic">{element.area}</span>
                             <p>{element.description}</p>
                           </div>
                         </div>                      
-                    </div>
-                    
+                    </div>                    
                 ))}
               </div>
               </div>
@@ -122,7 +124,7 @@ export default function MainGet() {
           </div>
           <div className="w-[300px] ml-7 px-4 h-[700px] bg-[#fff] border-[2px] rounded-lg">
           <h2 className="font-semibold mt-4">Altri profili simili</h2>
-            <AltriProfili />
+            <AltriProfili profiles={profiles} setProfiles={setProfiles}/>
           </div>
         </div>
       ) : (

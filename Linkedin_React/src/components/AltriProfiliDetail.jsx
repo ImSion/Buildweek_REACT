@@ -1,11 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "../modules/axios";
+import AltriProfili from "./AltriProfili";
 
 export default function AltriProfiliDetail({ profiles, setProfiles}) {
+
+  const [utente, setUtente] = useState([]);
     
 
-    const { id } = useParams();
+    const id  = useParams();
 
     const utenteTrovato = profiles.find(
         (utente) => utente.id === parseInt(id),
@@ -13,15 +16,16 @@ export default function AltriProfiliDetail({ profiles, setProfiles}) {
         // mentre quello che prendo dall'URL è una stringa!
     );
 
-    console.log(profiles);
+    console.log(id);
 
 
     useEffect(() => {
+      console.log(id)
         const fetchAllProfile = async () => {
             try {
-              const response = await axios.get(`/profile/{userId}`);
-              setProfiles(response.data);
-              console.log(response.data);
+              const response = await axios.get(`/profile/`+id.id);
+              setUtente(response.data);
+              console.log(utente);
             } catch (error) {
               if (error.response) {
                 console.error(`HTTP error: ${error.response.status}`);
@@ -45,23 +49,23 @@ export default function AltriProfiliDetail({ profiles, setProfiles}) {
                     <div>
                         <img
                         className="w-[150px] rounded-full absolute top-[100px] left-[30px] border-[5px] border-white"
-                        src={utenteTrovato.image}
+                        src={utente.image}
                         alt="immagine profilo"
                         />
                     </div>
                     <div className="mt-[80px]">
                         <h2 className="py-1 text-2xl font-semibold">
-                        {utenteTrovato.name} {utenteTrovato.surname}
+                        {utente.name} {utente.surname}
                         </h2>
-                        <p>{utenteTrovato.title}</p>
-                        <p className="py-2">{utenteTrovato.area}</p>
+                        <p>{utente.title}</p>
+                        <p className="py-2">{utente.area}</p>
                     </div>
                 </div>
                 
             </div>
             <div className="w-[300px] ml-7 px-4 h-[700px] bg-[#fff] border-[2px] rounded-lg">
             <h2 className="font-semibold mt-4">Altri profili simili</h2>
-                <AltriProfili />
+            <AltriProfili profiles={profiles} setProfiles={setProfiles}/>
             </div>
             {console.log(profiles)}
             </div>

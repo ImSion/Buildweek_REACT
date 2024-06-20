@@ -34,6 +34,17 @@ export default function AltriProfili({ profiles, setProfiles }) {
     return shuffled.slice(0, num);
   }
 
+  // Funzione per troncare il testo
+  const truncateText = (text, limit) => {
+    if (!text) {
+      return '';
+    }
+    if (text.length <= limit) {
+      return text;
+    }
+    return text.substring(0, limit) + '...';
+  };
+
   const randomProfiles = getRandomProfiles(profiles, 4);
 
   return (
@@ -44,7 +55,7 @@ export default function AltriProfili({ profiles, setProfiles }) {
             <img className="border-[2px] rounded-full p-3 w-[30%] h-[30%]" src={profile.image} alt="img" />
             <div>
               <p>{profile.name} {profile.surname}</p>
-              <p>{profile.bio}</p>
+              <p>{truncateText(profile.bio, 30)}</p> {/* Troncamento del testo */}
             </div>
           </div>
           <div className="flex items-center justify-center mt-3 border-b-[1px]">

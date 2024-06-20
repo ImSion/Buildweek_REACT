@@ -69,8 +69,12 @@ export default function MainGet({ profiles, setProfiles}) {
 
   return (
     <>
-      <div className={`bg-white border-b-[1px] fixed w-[100%] h-[48px] transition-all duration-300 ${isProfileVisible ? 'top-[0px]' : 'top-[48px] shadow-[0_0px_10px_0px_rgba(10,10,10,10)]'} z-10`}>
+
+     {profile && ( 
+     
+     <div className={`bg-white border-b-[1px] fixed w-[100%] h-[48px] transition-all duration-300 ${isProfileVisible ? 'top-[0px]' : 'top-[48px] shadow-[0_0px_10px_0px_rgba(10,10,10,10)]'} z-10`}>
         <div className="px-10 flex">
+          
           <div>
             <img
               className="w-[32px] rounded-full mt-2 border-white"
@@ -78,6 +82,7 @@ export default function MainGet({ profiles, setProfiles}) {
               alt="immagine profilo"
             />
           </div>
+
           <div className="ml-2">
                 <h2 className="mt-1 text-sm font-semibold">
                   {profile.name} {profile.surname}
@@ -91,6 +96,7 @@ export default function MainGet({ profiles, setProfiles}) {
         </div>
         
       </div>
+      )}
 
       {profile ? (
         <div className="container mx-auto flex px-[70px] items-start justify-center mt-12">
@@ -149,7 +155,9 @@ export default function MainGet({ profiles, setProfiles}) {
           </div>
         </div>
       ) : (
+
         <div>Caricamento...</div>
+
       )}
     </>
   );

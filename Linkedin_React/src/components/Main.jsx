@@ -6,8 +6,8 @@ import ButtonExperience from "./ButtonExperience";
 import hamburger from '../assets/pngwing.com.png'
 
 
-export default function MainGet({ profiles, setProfiles}) {
-  const [profile, setProfile] = useState(null);
+export default function MainGet({ profile, setProfile, profiles, setProfiles}) {
+  
   const [experience, setExperience] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [isProfileVisible, setIsProfileVisible] = useState(true);

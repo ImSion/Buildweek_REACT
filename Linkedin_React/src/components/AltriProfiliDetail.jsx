@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "../modules/axios";
 import AltriProfili from "./AltriProfili";
 
-export default function AltriProfiliDetail({ profiles, setProfiles}) {
+export default function AltriProfiliDetail({ profile, profiles, setProfiles }) {
 
   const [utente, setUtente] = useState([]);
     
@@ -37,12 +37,12 @@ export default function AltriProfiliDetail({ profiles, setProfiles}) {
             }
         };
         fetchAllProfile();
-    }, []);
+    },[setUtente]);
 
   return (
     <>
         {profiles ? (
-            <div className="container mx-auto flex mt-7 px-[70px] items-start justify-center">
+            <div onClick={() => vaiAlProfilo(profile._id)} className="container mx-auto flex mt-7 px-[70px] items-start justify-center">
             <div className="w-[804px] flex flex-col relative mt-11">
                 <div className="h-[200px] w-[100%] bg-blue-800 rounded-t-lg"></div>
                 <div className="bg-[#fff] p-5 pb-3 rounded-b-lg border-[1px]">
@@ -65,7 +65,7 @@ export default function AltriProfiliDetail({ profiles, setProfiles}) {
             </div>
             <div className="w-[300px] ml-7 px-4 h-[100%] bg-[#fff] border-[2px] rounded-lg mt-11">
             <h2 className="font-semibold mt-4">Altri profili simili</h2>
-            <AltriProfili profiles={profiles} setProfiles={setProfiles}/>
+            <AltriProfili profile={profile} profiles={profiles} setProfiles={setProfiles}/>
             </div>
             {console.log(profiles)}
             </div>

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 export default function AltriProfili({ profiles, setProfiles }) {
   const navigazione = useNavigate();
 
+
   function vaiAlProfilo(id) {
     // Naviga alla rotta "/prodotti/:prodottoId"
     navigazione(`/profile/${id}`);

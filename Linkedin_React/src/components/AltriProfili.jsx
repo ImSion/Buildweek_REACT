@@ -18,7 +18,7 @@ export default function AltriProfili({ profiles, setProfiles}) {
         try {
           const response = await axios.get("/profile");
           setProfiles(response.data);
-          console.log(response.data);
+          // console.log(response.data);
         } catch (error) {
           if (error.response) {
             console.error(`HTTP error: ${error.response.status}`);
@@ -47,7 +47,7 @@ export default function AltriProfili({ profiles, setProfiles}) {
             <div className="flex items-center justify-center mt-3 border-b-[1px]">
               <button className="border-[1px] border-black rounded-full px-5 py-1 mb-5">Messaggio</button>
             </div> 
-            {console.log(profiles)}
+            {/* {console.log(profiles)} */}
         </div>
         )}
     </>

@@ -2,10 +2,18 @@ import { useEffect } from "react";
 
 export default function Experience({setExperience, profile, experienceArray, profiles, setProfiles}) {
 
+  
+  // const updateForm = {
+  //   role: newRole,
+  //   company: newCompany,
+  //   startDate: newStartDate,
+  //   endDate: newEndDate,
+  //   area: newArea
+  // }
   useEffect(() => {
     const fetchExperience = async () => {
       try {
-        const response = await axios.get('/profile/'+id.id+'/experiences');
+        const response = await axios.get('/profile/'+id.id+'/experiences', updateForm);
         setExperience(response.data);
         console.log(response.data);
       } catch (error) {

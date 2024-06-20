@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 
 export default function MyNav({ search, setSearch, handleChange }) {
   return (  
-      <nav className="bg-white border-gray-200 dark:bg-gray-900 p-2 border-b-[1px]">
+      <nav className="bg-white border-gray-200 dark:bg-gray-900 border-b-[1px] fixed w-[100%] z-20 h-12 top-0">
 
-        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-[52px]">
+        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-[52px] mt-1">
 
           <div className='flex items-center'>
           <Link to='/' >
@@ -81,7 +81,7 @@ export default function MyNav({ search, setSearch, handleChange }) {
               </li>
 
               <li className='flex flex-col items-center'>
-                <img src="https://picsum.photos/seed/picsum/200/300" alt="profile_img" className='w-6 h-6 rounded-xl'/>
+                <img src="https://picsum.photos/seed/picsum/200/300" alt="profile_img" className='w-[22px] h-[22px] rounded-xl'/>
                 <Dropdown className='rounded-tl-lg rounded-bl-lg rounded-br-lg rounded-tr-none mt-1' label="" dismissOnClick={false} renderTrigger={() => 
                 <button className='flex items-center'>
                   <span className='text-xs text-[#4c4c4c]'>Tu</span>

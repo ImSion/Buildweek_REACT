@@ -136,20 +136,20 @@ export default function MainGet({ profile, setProfile, profiles, setProfiles}) {
               <div className="mt-4">
                 <div>
                   {experienceArray.slice(-3).map((element) => (
-
                     <div className="border-red-500" key={element._id}> 
                       <div className="flex gap-[20px] mb-4 flex justify-between">
-                        <div>
-                        <div>
-                          <img className="rounded-full w-[50px] h-[50px]" src={hamburger} alt="img" />
+                        <div className="flex">
+                          <div>
+                            <img className="rounded-full w-[50px] h-[50px] mr-3" src={hamburger} alt="img" />
+                          </div>
+                          <div className="flex flex-col">
+                            <h5 className="font-semibold">{element.role}</h5>
+                            <h4>{element.company}</h4>
+                            <span>{element.startDate} - {element.endDate}</span>
+                            <span className="mb-3 italic">{element.area}</span>
+                            <p>{element.description}</p>
+                          </div>
                         </div>
-                        <div className="flex flex-col">
-                          <h5 className="font-semibold">{element.role}</h5>
-                          <h4>{element.company}</h4>
-                          <span>{element.startDate} - {element.endDate}</span>
-                          <span className="mb-3 italic">{element.area}</span>
-                          <p>{element.description}</p>
-                        </div></div>
                         <span onClick={() => {
                       setOpenModal(true);
                       setSelectedExperience(element);

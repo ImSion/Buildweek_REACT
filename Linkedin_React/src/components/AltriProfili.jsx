@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from "../modules/axios";
 import { useNavigate } from 'react-router-dom';
 
-export default function AltriProfili({ profiles, setProfiles }) {
+export default function AltriProfili({ profiles, setProfiles}) {
   const navigazione = useNavigate();
 
 

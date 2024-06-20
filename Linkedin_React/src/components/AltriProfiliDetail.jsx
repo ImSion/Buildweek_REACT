@@ -2,10 +2,16 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "../modules/axios";
 import AltriProfili from "./AltriProfili";
+import hamburger from '../assets/pngwing.com.png'
 
-export default function AltriProfiliDetail({ profile, profiles, setProfiles }) {
 
+export default function AltriProfiliDetail({ profile, profiles, setProfiles}) {
+
+ 
   const [utente, setUtente] = useState([]);
+  const [experience, setExperience] = useState([]);
+
+  const experienceArray = Object.values(experience);
     
 
     const id  = useParams();
@@ -15,8 +21,6 @@ export default function AltriProfiliDetail({ profile, profiles, setProfiles }) {
         // parseInt(id) perchè l'id dell'oggetto è un numero,
         // mentre quello che prendo dall'URL è una stringa!
     );
-
-    console.log(id);
 
 
     useEffect(() => {
@@ -38,6 +42,25 @@ export default function AltriProfiliDetail({ profile, profiles, setProfiles }) {
         };
         fetchAllProfile();
     },[id.id]);
+
+    useEffect(() => {
+      const fetchExperience = async () => {
+        try {
+          const response = await axios.get('/profile/'+id.id+'/experiences');
+          setExperience(response.data);
+          console.log(response.data);
+        } catch (error) {
+          if (error.response) {
+            console.error(`HTTP error: ${error.response.status}`);
+          } else if (error.request) {
+            console.error("Request error: No response received");
+          } else {
+            console.error("Error:", error.message);
+          }
+        }
+      };
+      fetchExperience();
+    }, []);
 
   return (
     <>
@@ -61,6 +84,36 @@ export default function AltriProfiliDetail({ profile, profiles, setProfiles }) {
                         <p className="py-2">{utente.area}</p>
                     </div>
                 </div>
+                <div className="w-[100%] bg-[#fff] my-2 rounded-lg border-[1px] px-5">
+              <div className="flex justify-between mt-2">
+                <h3 className="text-2xl">Esperienze</h3>
+                <div className="flex items-start gap-[12px]">
+                 </div>
+              </div>
+              <div className="mt-4">
+                <div>
+                  {experienceArray.slice(-3).map((element) => (
+                    <div className="border-red-500" key={element._id}> 
+                      <div className="flex gap-[20px] mb-4 flex justify-between">
+                        <div className="flex">
+                          <div>
+                            <img className="rounded-full w-[50px] h-[50px] mr-3" src={hamburger} alt="img" />
+                          </div>
+                          <div className="flex flex-col">
+                            <h5 className="font-semibold">{element.role}</h5>
+                            <h4>{element.company}</h4>
+                            <span>{element.startDate} - {element.endDate}</span>
+                            <span className="mb-3 italic">{element.area}</span>
+                            <p>{element.description}</p>
+                          </div>
+                        </div>
+                        
+                      </div>                      
+                    </div>                    
+                  ))}
+                </div>
+              </div>
+            </div>
                 
             </div>
             <div className="w-[300px] ml-7 px-4 h-[100%] bg-[#fff] border-[2px] rounded-lg mt-11">

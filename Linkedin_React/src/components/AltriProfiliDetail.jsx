@@ -63,7 +63,7 @@ export default function AltriProfiliDetail({ profiles, setProfiles}) {
                 </div>
                 
             </div>
-            <div className="w-[300px] ml-7 px-4 h-[700px] bg-[#fff] border-[2px] rounded-lg mt-11">
+            <div className="w-[300px] ml-7 px-4 h-[100%] bg-[#fff] border-[2px] rounded-lg mt-11">
             <h2 className="font-semibold mt-4">Altri profili simili</h2>
             <AltriProfili profiles={profiles} setProfiles={setProfiles}/>
             </div>

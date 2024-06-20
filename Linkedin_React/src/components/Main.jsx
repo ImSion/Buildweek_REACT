@@ -8,7 +8,7 @@ import hamburger from '../assets/pngwing.com.png'
 
 export default function MainGet({ profiles, setProfiles}) {
   const [profile, setProfile] = useState(null);
-  const [experience, setExperience] = useState({});
+  const [experience, setExperience] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [isProfileVisible, setIsProfileVisible] = useState(true);
 
@@ -19,7 +19,7 @@ export default function MainGet({ profiles, setProfiles}) {
       try {
         const response = await axios.get("/profile/me");
         setProfile(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       } catch (error) {
         if (error.response) {
           console.error(`HTTP error: ${error.response.status}`);
@@ -38,7 +38,7 @@ export default function MainGet({ profiles, setProfiles}) {
       try {
         const response = await axios.get(`/profile/66706ee951a3a20015f06302/experiences`);
         setExperience(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       } catch (error) {
         if (error.response) {
           console.error(`HTTP error: ${error.response.status}`);
@@ -119,17 +119,17 @@ export default function MainGet({ profiles, setProfiles}) {
                 <p className="py-2">{profile.area}</p>
               </div>
             </div>
-            <div className="w-[100%] bg-[#fff] my-2 rounded-lg border-[1px] p-5">
+            <div className="w-[100%] bg-[#fff] my-2 rounded-lg border-[1px] px-5">
               <div className="flex justify-between mt-2">
                 <h3 className="text-2xl">Esperienze</h3>
                 <div className="flex items-start gap-[12px]">
                   <Modale experience={experience} setExperience={setExperience} openModal={openModal} setOpenModal={setOpenModal} id={profile._id} />
-                  <ButtonExperience setOpenModal={setOpenModal}/>
+                  <ButtonExperience setOpenModal={setOpenModal} setExperience={setExperience} profile={profile} experienceArray={experienceArray} profiles={profiles} setProfiles={setProfiles}/>
                 </div>
               </div>
               <div className="mt-4">
                 <div>
-                  {experienceArray.slice(3, 6).map((element) => (
+                  {experienceArray.slice(-3).map((element) => (
                     <div className="border-red-500" key={element.id}>
                       <div className="flex gap-[20px] mb-4">
                         <div>

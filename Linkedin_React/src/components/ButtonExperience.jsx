@@ -18,7 +18,7 @@ export default function ButtonExperience({setOpenModal, setExperience, profile, 
                 />
             </svg>
         </button>
-        <button onClick={() => setOpenModal(true)} setExperience={setExperience} profile={profile} experienceArray={experienceArray} profiles={profiles} setProfiles={setProfiles}>
+        <button className="hidden" onClick={() => setOpenModal(true)} setExperience={setExperience} profile={profile} experienceArray={experienceArray} profiles={profiles} setProfiles={setProfiles}>
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

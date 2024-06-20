@@ -12,6 +12,8 @@ export default function MainGet({ profile, setProfile, profiles, setProfiles}) {
   const [openModal, setOpenModal] = useState(false);
   const [isProfileVisible, setIsProfileVisible] = useState(true);
 
+  const [selectedExperience, setSelectedExperience] = useState(null);
+
   const experienceArray = Object.values(experience);
 
   useEffect(() => {
@@ -123,14 +125,22 @@ export default function MainGet({ profile, setProfile, profiles, setProfiles}) {
               <div className="flex justify-between mt-2">
                 <h3 className="text-2xl">Esperienze</h3>
                 <div className="flex items-start gap-[12px]">
-                  <Modale experience={experience} setExperience={setExperience} openModal={openModal} setOpenModal={setOpenModal} id={profile._id} />
+                  <Modale
+                    experience={experience} setExperience={setExperience} openModal={openModal} setOpenModal={setOpenModal} id={profile._id} 
+                    selectedExperience={selectedExperience}
+                    setSelectedExperience={setSelectedExperience}
+                  />
                   <ButtonExperience setOpenModal={setOpenModal} setExperience={setExperience} profile={profile} experienceArray={experienceArray} profiles={profiles} setProfiles={setProfiles}/>
                 </div>
               </div>
               <div className="mt-4">
                 <div>
                   {experienceArray.slice(-3).map((element) => (
-                    <div className="border-red-500" key={element.id}>
+
+                    <div className="border-red-500" key={element._id}> <span onClick={() => {
+                      setOpenModal(true);
+                      setSelectedExperience(element);
+                    }}>banana</span>
                       <div className="flex gap-[20px] mb-4">
                         <div>
                           <img className="rounded-full w-[50px] h-[50px]" src={hamburger} alt="img" />

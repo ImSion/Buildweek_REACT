@@ -20,7 +20,6 @@ function App() {
       <Routes>
         <Route path='/' element={<Main profile={profile} setProfile={setProfile} profiles={profiles} setProfiles={setProfiles}/>}></Route>
         <Route path='/profile/:id' element={<AltriProfiliDetail profiles={profiles} setProfiles={setProfiles}/>}></Route>
-        <Route path='/experience/' element={<Experience />}></Route>
       </Routes>
       <MyFooter />
     </Router>

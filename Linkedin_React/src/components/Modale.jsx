@@ -1,32 +1,72 @@
 import { Label, Modal, Select, TextInput } from 'flowbite-react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from '../modules/axios';
 import Input from './Input';
 
-export default function Modale({ id, experience, setExperience, openModal, setOpenModal }) {
+export default function Modale({ id, experience, setExperience, openModal, setOpenModal, selectedExperience, setSelectedExperience }) {
     
-    const [inputRole, setInputRole] = useState();
-    const [inputCompany, setInputCompany] = useState();
-    const [inputStartDate, setInputStartDate] = useState();
-    const [inputEndDate, setInputEndDate] = useState();
-    const [inputDescription, setInputDescription] = useState();
-    const [inputArea, setInputArea] = useState();
+  const [inputRole, setInputRole] = useState(selectedExperience?.role || '');
+  const [inputCompany, setInputCompany] = useState(selectedExperience?.company || '');
+  const [inputStartDate, setInputStartDate] = useState(selectedExperience?.startDate || '');
+  const [inputEndDate, setInputEndDate] = useState(selectedExperience?.endDate || '');
+  const [inputDescription, setInputDescription] = useState(selectedExperience?.description || '');
+  const [inputArea, setInputArea] = useState(selectedExperience?.area || '');
+
+  useEffect(() => {
+    if (selectedExperience) {
+        setInputRole(selectedExperience.role);
+        setInputCompany(selectedExperience.company);
+        setInputStartDate(selectedExperience.startDate);
+        setInputEndDate(selectedExperience.endDate);
+        setInputDescription(selectedExperience.description);
+        setInputArea(selectedExperience.area);
+    }
+  }, [selectedExperience]);
     
 
-    const AddExperience = async () => {
-      const newExperience = {
+  const AddOrUpdateExperience = async () => {
+    const experienceData = {
         role: inputRole,
         company: inputCompany,
         startDate: inputStartDate,
         endDate: inputEndDate,
         description: inputDescription,
         area: inputArea
-      };
-      
-      setExperience(prevExperiences => [...prevExperiences, newExperience]);
-      
-      await fetchExperience(newExperience);
     };
+
+    if (selectedExperience) {
+        // Update existing experience
+        await updateExperience(selectedExperience._id, experienceData);
+    } else {
+        // Add new experience
+        await addExperience(experienceData);
+    }
+
+    setOpenModal(false);
+    setSelectedExperience(null);
+};
+
+const updateExperience = async (experienceId, data) => {
+  try {
+      const response = await axios.put(`/profile/${id}/experiences/${experienceId}`, data);
+      setExperience(prevExperiences => 
+          prevExperiences.map(exp => exp._id === experienceId ? response.data : exp)
+      );
+  } catch (error) {
+      console.error("Error updating experience:", error);
+  }
+};
+
+// Rename fetchExperience to addExperience for clarity
+const addExperience = async (data) => {
+  try {
+      const response = await axios.post(`/profile/${id}/experiences`, data);
+      console.log(response.data);
+      setExperience(prevExperiences => [...prevExperiences, response.data]);
+  } catch (error) {
+      console.error("Error adding experience:", error);
+  }
+};
 
     const fetchExperience = async (experience) => {
         try {
@@ -99,7 +139,7 @@ export default function Modale({ id, experience, setExperience, openModal, setOp
                 </form>
                 <div className="flex justify-between">
                   <button className="font-semibold text-[#181818] rounded-lg px-5 py-1 hover:bg-[#f4f2ee]" type="submit">Elimina esperienza</button>
-                  <button className="text-white font-semibold rounded-xl bg-[#0a66c2] w-[10%] px-5 py-1 flex justify-center" type="submit" onClick={(e) => AddExperience()}>Salva</button>
+                  <button className="text-white font-semibold rounded-xl bg-[#0a66c2] w-[10%] px-5 py-1 flex justify-center" type="submit" onClick={(e) => AddOrUpdateExperience ()}>Salva</button>
                 </div>
               </Modal.Body>
           </Modal>

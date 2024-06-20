@@ -52,7 +52,7 @@ export default function MainGet({ profile, setProfile, profiles, setProfiles}) {
       }
     };
     fetchExperience();
-  }, []);
+  }, [selectedExperience]);
 
   useEffect(() => {
     const handleScroll = () => {

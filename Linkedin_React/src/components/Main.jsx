@@ -137,7 +137,7 @@ export default function MainGet({ profile, setProfile, profiles, setProfiles}) {
                 <div>
                   {experienceArray.slice(-3).map((element) => (
                     <div className="border-red-500" key={element._id}> 
-                      <div className="flex gap-[20px] mb-4 flex justify-between">
+                      <div className="flex gap-[20px] mb-4 justify-between">
                         <div className="flex">
                           <div>
                             <img className="rounded-full w-[50px] h-[50px] mr-3" src={hamburger} alt="img" />

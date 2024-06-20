@@ -60,7 +60,7 @@ export default function AltriProfiliDetail({ profile, profiles, setProfiles}) {
         }
       };
       fetchExperience();
-    }, []);
+    }, [id.id]);
 
   return (
     <>

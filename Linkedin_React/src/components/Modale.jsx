@@ -56,6 +56,19 @@ const updateExperience = async (experienceId, data) => {
       console.error("Error updating experience:", error);
   }
 };
+const deleteExperience = async (experienceId, data) => {
+  try {
+      const response = await axios.delete(`/profile/${id}/experiences/${experienceId}`, data);
+      console.log(response);
+      setExperience(prevExperiences => 
+          prevExperiences.filter(exp => exp._id !== experienceId)
+      );
+      setOpenModal(false);
+      setSelectedExperience(null);
+  } catch (error) {
+      console.error("Error updating experience:", error);
+  }
+};
 
 // Rename fetchExperience to addExperience for clarity
 const addExperience = async (data) => {
@@ -138,7 +151,7 @@ const addExperience = async (data) => {
               
                 </form>
                 <div className="flex justify-between">
-                  <button className="font-semibold text-[#181818] rounded-lg px-5 py-1 hover:bg-[#f4f2ee]" type="submit">Elimina esperienza</button>
+                  <button onClick={() => deleteExperience(selectedExperience._id)} className="font-semibold text-[#181818] rounded-lg px-5 py-1 hover:bg-[#f4f2ee]" type="submit">Elimina esperienza</button>
                   <button className="text-white font-semibold rounded-xl bg-[#0a66c2] w-[10%] px-5 py-1 flex justify-center" type="submit" onClick={(e) => AddOrUpdateExperience ()}>Salva</button>
                 </div>
               </Modal.Body>

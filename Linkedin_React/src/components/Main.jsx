@@ -119,7 +119,7 @@ export default function MainGet({ profiles, setProfiles}) {
                 <p className="py-2">{profile.area}</p>
               </div>
             </div>
-            <div className="w-[100%] bg-[#fff] my-2 rounded-lg border-[1px] px-5">
+            <div className="w-[100%] bg-[#fff] my-2 rounded-lg border-[1px] p-5">
               <div className="flex justify-between mt-2">
                 <h3 className="text-2xl">Esperienze</h3>
                 <div className="flex items-start gap-[12px]">

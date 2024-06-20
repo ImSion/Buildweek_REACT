@@ -38,7 +38,7 @@ export default function MainGet({ profile, setProfile, profiles, setProfiles}) {
       try {
         const response = await axios.get(`/profile/66706ee951a3a20015f06302/experiences`);
         setExperience(response.data);
-        // console.log(response.data);
+        console.log(response.data);
       } catch (error) {
         if (error.response) {
           console.error(`HTTP error: ${error.response.status}`);

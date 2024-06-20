@@ -37,7 +37,7 @@ export default function AltriProfiliDetail({ profile, profiles, setProfiles }) {
             }
         };
         fetchAllProfile();
-    },[setUtente]);
+    },[id.id]);
 
   return (
     <>

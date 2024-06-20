@@ -18,7 +18,7 @@ function App() {
     <Router>
       <MyNav search={search} setSearch={setSearch} handleChange={handleChange}/>
       <Routes>
-        <Route path='/' element={<Main profile={profile} setProfile={setProfile} profiles={profiles} setProfiles={setProfiles}/>}></Route>
+        <Route path='/' element={<Main profile={profile} setProfile={setProfile} profiles={profiles} setProfiles={setProfiles} search={search}/>}></Route>
         <Route path='/profile/:id' element={<AltriProfiliDetail profiles={profiles} setProfiles={setProfiles}/>}></Route>
       </Routes>
       <MyFooter />

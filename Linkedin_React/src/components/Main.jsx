@@ -6,7 +6,7 @@ import ButtonExperience from "./ButtonExperience";
 import hamburger from '../assets/pngwing.com.png'
 
 
-export default function MainGet({ profile, setProfile, profiles, setProfiles}) {
+export default function MainGet({ profile, setProfile, profiles, setProfiles, search }) {
   
   const [experience, setExperience] = useState([]);
   const [openModal, setOpenModal] = useState(false);
@@ -178,7 +178,7 @@ export default function MainGet({ profile, setProfile, profiles, setProfiles}) {
           </div>
           <div className="w-[300px] ml-7 px-4 h-[100%] bg-[#fff] border-[2px] rounded-lg mt-[26px]">
             <h2 className="font-semibold mt-4">Altri profili simili</h2>
-            <AltriProfili profiles={profiles} setProfiles={setProfiles}/>
+            <AltriProfili profiles={profiles} setProfiles={setProfiles} search={search}/>
           </div>
         </div>
       ) : (

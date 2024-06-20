@@ -69,8 +69,27 @@ export default function MainGet({ profiles, setProfiles}) {
 
   return (
     <>
-      <div className={`bg-red-500 fixed w-[100%] h-[48px] transition-all duration-300 ${isProfileVisible ? 'top-[0px]' : 'top-[48px]'} z-10`}>
-        Ciao
+      <div className={`bg-white border-b-[1px] shadow-[0_0px_10px_0px_rgba(10,10,10,10)] fixed w-[100%] h-[48px] transition-all duration-300 ${isProfileVisible ? 'top-[0px]' : 'top-[48px]'} z-10`}>
+        <div className="px-10 flex">
+          <div>
+            <img
+              className="w-[32px] rounded-full mt-2 border-white"
+              src={profile.image}
+              alt="immagine profilo"
+            />
+          </div>
+          <div className="ml-2">
+                <h2 className="mt-1 text-sm font-semibold">
+                  {profile.name} {profile.surname}
+                </h2>
+                <div className="flex text-xs">
+                  <p>{profile.title}</p>
+                  <p className="mx-5">{profile.area}</p>
+                </div>
+                
+          </div>
+        </div>
+        
       </div>
 
       {profile ? (
@@ -122,6 +141,27 @@ export default function MainGet({ profiles, setProfiles}) {
                 </div>
               </div>
             </div>
+
+            <div>ciao come stai</div>
+            <div>ciao come stai</div>
+            <div>ciao come stai</div>
+            <div>ciao come stai</div>
+            <div>ciao come stai</div>
+            <div>ciao come stai</div>
+            <div>ciao come stai</div>
+            <div>ciao come stai</div>
+            <div>ciao come stai</div>
+            <div>ciao come stai</div>
+            <div>ciao come stai</div>
+            <div>ciao come stai</div>
+            <div>ciao come stai</div>
+            <div>ciao come stai</div>
+            <div>ciao come stai</div>
+            <div>ciao come stai</div>
+            <div>ciao come stai</div>
+            <div>ciao come stai</div>
+            <div>ciao come stai</div>
+            <div>ciao come stai</div>
           </div>
           <div className="w-[300px] ml-7 px-4 h-[700px] bg-[#fff] border-[2px] rounded-lg mt-[26px]">
             <h2 className="font-semibold mt-4">Altri profili simili</h2>

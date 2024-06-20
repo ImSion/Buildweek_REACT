@@ -100,6 +100,7 @@ export default function MainGet({ profiles, setProfiles}) {
 
       {profile ? (
         <div className="container mx-auto flex px-[70px] items-start justify-center mt-12">
+
           <div className="w-[804px] flex flex-col relative mt-7">
             <div className="h-[200px] w-[100%] bg-blue-800 rounded-t-lg"></div>
             <div id="profile-section" className="bg-[#fff] p-5 pb-3 rounded-b-lg border-[1px]">
@@ -118,8 +119,8 @@ export default function MainGet({ profiles, setProfiles}) {
                 <p className="py-2">{profile.area}</p>
               </div>
             </div>
-            <div className="w-[100%] bg-[#fff] my-2 rounded-lg border-[1px] p-5">
-              <div className="flex justify-between">
+            <div className="w-[100%] bg-[#fff] my-2 rounded-lg border-[1px] px-5">
+              <div className="flex justify-between mt-2">
                 <h3 className="text-2xl">Esperienze</h3>
                 <div className="flex items-start gap-[12px]">
                   <Modale experience={experience} setExperience={setExperience} openModal={openModal} setOpenModal={setOpenModal} id={profile._id} />
@@ -147,7 +148,9 @@ export default function MainGet({ profiles, setProfiles}) {
                 </div>
               </div>
             </div>
-            <div className="bg-red-300">ciao</div>
+            
+            <div className="bg-red-300 ">ciao</div>
+            
           </div>
           <div className="w-[300px] ml-7 px-4 h-[100%] bg-[#fff] border-[2px] rounded-lg mt-[26px]">
             <h2 className="font-semibold mt-4">Altri profili simili</h2>

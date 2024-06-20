@@ -74,7 +74,7 @@ export default function MainGet({ profiles, setProfiles}) {
      
      <div className={`bg-white border-b-[1px] fixed w-[100%] h-[48px] transition-all duration-300 ${isProfileVisible ? 'top-[0px]' : 'top-[48px] shadow-[0_0px_10px_0px_rgba(10,10,10,10)]'} z-10`}>
         <div className="px-10 flex">
-          
+
           <div>
             <img
               className="w-[32px] rounded-full mt-2 border-white"
@@ -149,7 +149,7 @@ export default function MainGet({ profiles, setProfiles}) {
             </div>
             <div className="bg-red-300">ciao</div>
           </div>
-          <div className="w-[300px] ml-7 px-4 h-[700px] bg-[#fff] border-[2px] rounded-lg mt-[26px]">
+          <div className="w-[300px] ml-7 px-4 h-[100%] bg-[#fff] border-[2px] rounded-lg mt-[26px]">
             <h2 className="font-semibold mt-4">Altri profili simili</h2>
             <AltriProfili profiles={profiles} setProfiles={setProfiles}/>
           </div>

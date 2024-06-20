@@ -14,37 +14,27 @@ export default function Modale({ id, experience, setExperience, openModal, setOp
     
 
     const AddExperience = async () => {
-        setExperience({
-            role: inputRole,
-            company: inputCompany,
-            startDate: inputStartDate,
-            endDate: inputEndDate,
-            description: inputDescription,
-            area: inputArea
-        })        
-        
-        await fetchExperience(experience)
-    }
-
-    const updateExperience = async () => {
-        setExperience({
-            role: inputRole,
-            company: inputCompany,
-            startDate: inputStartDate,
-            endDate: inputEndDate,
-            description: inputDescription,
-            area: inputArea
-        })        
-        
-        await updateFetchExperience(experience)
-    }
+      const newExperience = {
+        role: inputRole,
+        company: inputCompany,
+        startDate: inputStartDate,
+        endDate: inputEndDate,
+        description: inputDescription,
+        area: inputArea
+      };
+      
+      setExperience(prevExperiences => [...prevExperiences, newExperience]);
+      
+      await fetchExperience(newExperience);
+    };
 
     const fetchExperience = async (experience) => {
         try {
-            console.log(experience.value)
-            console.log(id)
+          console.log(experience);
+            // console.log(experience.value)
+            // console.log(id)
           const response = await axios.post(`/profile/:${id}/experiences`,experience);
-          console.log(response.data);
+          // console.log(response.data);
         } catch (error) {
           if (error.response) {
             console.error(`HTTP error: ${error.response.status}`);
@@ -55,23 +45,6 @@ export default function Modale({ id, experience, setExperience, openModal, setOp
           }
         }
     }; 
-
-    const updateFetchExperience = async (experience) => {
-      try {
-          console.log(experience.value)
-          console.log(id)
-        const response = await axios.post(`/profile/:${id}/experiences`,experience);
-        console.log(response.data);
-      } catch (error) {
-        if (error.response) {
-          console.error(`HTTP error: ${error.response.status}`);
-        } else if (error.request) {
-          console.error("Request error: No response received");
-        } else {
-          console.error("Error:", error.message);
-        }
-      }
-  }; 
     
     
   return (

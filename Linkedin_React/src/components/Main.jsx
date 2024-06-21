@@ -121,7 +121,7 @@ export default function MainGet({ profile, setProfile, profiles, setProfiles, se
                 <p className="py-2">{profile.area}</p>
               </div>
             </div>
-            <div className="w-[100%] bg-[#fff] my-2 rounded-lg border-[1px] px-5">
+            <div className="w-[100%] bg-[#fff] my-2 rounded-lg border-[1px] p-5">
               <div className="flex justify-between mt-2">
                 <h3 className="text-2xl">Esperienze</h3>
                 <div className="flex items-start gap-[12px]">
@@ -151,29 +151,38 @@ export default function MainGet({ profile, setProfile, profiles, setProfiles, se
                           </div>
                         </div>
                         <span onClick={() => {
-                      setOpenModal(true);
-                      setSelectedExperience(element);
+                         setOpenModal(true);
+                         setSelectedExperience(element);
                     }}> <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="size-6"
-                    ><path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"
-                />
-            </svg></span>
-                      </div>                      
-                    </div>                    
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.5}
+                          stroke="currentColor"
+                          className="size-6"
+                          ><path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"
+                          />
+                        </svg>
+                      </span>
+                    </div>                      
+                  </div>                    
                   ))}
                 </div>
               </div>
             </div>
             
-            <div className="bg-red-300 ">ciao</div>
+            <div className="bg-[#fff] rounded-lg border-[1px] p-5">
+              <h1 className="font-semibold text-xl">Informazioni</h1>
+              <p></p>
+            </div>
+
+            <div className="bg-[#fff] rounded-lg border-[1px] p-5">
+              <h1 className="font-semibold text-xl">Informazioni</h1>
+              <p></p>
+            </div>
             
           </div>
           <div className="w-[300px] ml-7 px-4 h-[100%] bg-[#fff] border-[2px] rounded-lg mt-[26px]">

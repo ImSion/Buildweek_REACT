@@ -1,7 +1,6 @@
 import { Label, Modal, Select, TextInput } from 'flowbite-react'
 import React, { useEffect, useState } from 'react'
 import axios from '../modules/axios';
-import Input from './Input';
 
 export default function Modale({ id, experience, setExperience, openModal, setOpenModal, selectedExperience, setSelectedExperience }) {
     

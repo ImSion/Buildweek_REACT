@@ -33,8 +33,7 @@ export default function AltriProfili({ profiles, setProfiles, search }) {
     if (!search) return randomProfiles;
     return profiles.filter(profile => 
       profile.name.toLowerCase().includes(search.toLowerCase()) || 
-      profile.surname.toLowerCase().includes(search.toLowerCase()) ||
-      (profile.bio && profile.bio.toLowerCase().includes(search.toLowerCase()))
+      profile.surname.toLowerCase().includes(search.toLowerCase())
     ).slice(0, 4);
   }, [search, randomProfiles, profiles]);
 

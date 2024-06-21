@@ -76,7 +76,7 @@ export default function MainGet({ profile, setProfile, profiles, setProfiles, se
           <div className="px-10 flex">
             <div>
               <img
-                className="w-[32px] rounded-full mt-2 border-white"
+                className="w-[32px] h-[32px] rounded-full mt-2 border-white"
                 src={profile.image}
                 alt="immagine profilo"
               />
@@ -101,13 +101,13 @@ export default function MainGet({ profile, setProfile, profiles, setProfiles, se
             <div id="profile-section" className="bg-[#fff] p-5 pb-3 rounded-b-lg border-[1px]">
               <div>
                 <img
-                  className="w-[150px] rounded-full absolute top-[100px] left-[30px] border-[4px] border-white cursor-pointer"
+                  className="w-[150px] h-[150px] rounded-full absolute top-[100px] left-[30px] border-[4px] border-white cursor-pointer"
                   src={profile.image}
                   alt="immagine profilo"
                   onClick={() => setIsProfileImageModalOpen(true)}
                 />
               </div>
-              <div className="mt-[80px]">
+              <div className="mt-[30px]">
                 <h2 className="py-1 text-2xl font-semibold">
                   {profile.name} {profile.surname}
                 </h2>

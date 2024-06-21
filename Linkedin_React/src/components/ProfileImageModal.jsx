@@ -2,16 +2,28 @@ import React, { useState } from "react";
 import axios from "../modules/axios";
 
 const ProfileImageModal = ({ profile, setProfile, onClose }) => {
-  const [newProfileImageUrl, setNewProfileImageUrl] = useState("");
-  
+  const [newProfileImage, setNewProfileImage] = useState(null);
+
+  const handleProfileImageChange = (e) => {
+    setNewProfileImage(e.target.files[0]);
+  };
+
   const updateProfileImage = async () => {
-      if (!newProfileImageUrl) return;
-      
-      console.log(profile);
+    if (!newProfileImage) return;
+
+    const formData = new FormData();
+    formData.append("profile", newProfileImage);
+
     try {
-    
-      await axios.put(`/profile/me/picture`,  newProfileImageUrl );
-      setProfile(newProfileImageUrl);
+      const response = await axios.post(`/profile/${profile._id}/picture`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      setProfile((prevProfile) => ({
+        ...prevProfile,
+        image: response.data.imageUrl, 
+      }));
       onClose();
     } catch (error) {
       if (error.response) {
@@ -29,10 +41,8 @@ const ProfileImageModal = ({ profile, setProfile, onClose }) => {
       <div className="bg-white p-5 rounded-lg">
         <h2 className="text-lg font-semibold mb-4">Cambia immagine del profilo</h2>
         <input 
-          type="text" 
-          placeholder="Inserisci URL dell'immagine" 
-          value={newProfileImageUrl} 
-          onChange={(e) => setNewProfileImageUrl(e.target.value)} 
+          type="file" 
+          onChange={handleProfileImageChange} 
           className="w-full border p-2 rounded mb-4"
         />
         <div className="flex justify-end">

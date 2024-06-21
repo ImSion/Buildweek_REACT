@@ -3,16 +3,16 @@ import axios from "../modules/axios";
 import AltriProfili from "./AltriProfili";
 import Modale from "./Modale";
 import ButtonExperience from "./ButtonExperience";
-import hamburger from '../assets/pngwing.com.png'
-
+import hamburger from '../assets/pngwing.com.png';
+import ProfileImageModal from "./ProfileImageModal"; // Importa il nuovo componente del modale
 
 export default function MainGet({ profile, setProfile, profiles, setProfiles, search }) {
   
   const [experience, setExperience] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [isProfileVisible, setIsProfileVisible] = useState(true);
-
   const [selectedExperience, setSelectedExperience] = useState(null);
+  const [isProfileImageModalOpen, setIsProfileImageModalOpen] = useState(false);
 
   const experienceArray = Object.values(experience);
 
@@ -33,7 +33,7 @@ export default function MainGet({ profile, setProfile, profiles, setProfiles, se
       }
     };
     fetchProfile();
-  }, []);
+  }, [setProfile]);
 
   useEffect(() => {
     const fetchExperience = async () => {
@@ -71,46 +71,40 @@ export default function MainGet({ profile, setProfile, profiles, setProfiles, se
 
   return (
     <>
-
-     {profile && ( 
-     
-     <div className={`bg-white border-b-[1px] fixed w-[100%] h-[48px] transition-all duration-300 ${isProfileVisible ? 'top-[0px]' : 'top-[48px] shadow-[0_0px_10px_0px_rgba(10,10,10,10)]'} z-10`}>
-        <div className="px-10 flex">
-
-          <div>
-            <img
-              className="w-[32px] rounded-full mt-2 border-white"
-              src={profile.image}
-              alt="immagine profilo"
-            />
-          </div>
-
-          <div className="ml-2">
-                <h2 className="mt-1 text-sm font-semibold">
-                  {profile.name} {profile.surname}
-                </h2>
-                <div className="flex text-xs">
-                  <p>{profile.title}</p>
-                  <p className="mx-5">{profile.area}</p>
-                </div>
-                
+      {profile && ( 
+        <div className={`bg-white border-b-[1px] fixed w-[100%] h-[48px] transition-all duration-300 ${isProfileVisible ? 'top-[0px]' : 'top-[48px] shadow-[0_0px_10px_0px_rgba(10,10,10,10)]'} z-10`}>
+          <div className="px-10 flex">
+            <div>
+              <img
+                className="w-[32px] rounded-full mt-2 border-white"
+                src={profile.image}
+                alt="immagine profilo"
+              />
+            </div>
+            <div className="ml-2">
+              <h2 className="mt-1 text-sm font-semibold">
+                {profile.name} {profile.surname}
+              </h2>
+              <div className="flex text-xs">
+                <p>{profile.title}</p>
+                <p className="mx-5">{profile.area}</p>
+              </div>
+            </div>
           </div>
         </div>
-        
-      </div>
       )}
 
       {profile ? (
-        <div className=" mx-auto flex px-[70px] items-start justify-center mt-12">
-
+        <div className="mx-auto flex px-[70px] items-start justify-center mt-12">
           <div className="w-[804px] flex flex-col relative mt-7">
             <div className="h-[200px] w-[100%] bg-blue-800 rounded-t-lg"></div>
             <div id="profile-section" className="bg-[#fff] p-5 pb-3 rounded-b-lg border-[1px]">
               <div>
                 <img
-                  className="w-[150px] rounded-full absolute top-[100px] left-[30px] border-[4px] border-white"
+                  className="w-[150px] rounded-full absolute top-[100px] left-[30px] border-[4px] border-white cursor-pointer"
                   src={profile.image}
                   alt="immagine profilo"
+                  onClick={() => setIsProfileImageModalOpen(true)}
                 />
               </div>
               <div className="mt-[80px]">
@@ -151,9 +145,9 @@ export default function MainGet({ profile, setProfile, profiles, setProfiles, se
                           </div>
                         </div>
                         <span onClick={() => {
-                         setOpenModal(true);
-                         setSelectedExperience(element);
-                    }}> <svg
+                          setOpenModal(true);
+                          setSelectedExperience(element);
+                        }}> <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
                           viewBox="0 0 24 24"
@@ -227,13 +221,9 @@ export default function MainGet({ profile, setProfile, profiles, setProfiles, se
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-4 mt-3 bg-[#df704d] border-white border p-[1px] rounded-full text-white absolute left-3">
                     <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
                   </svg>
-
-
-
                 </div>
               </div>
             </div>
-            
           </div>
           <div className="w-[300px] ml-7 px-4 h-[100%] bg-[#fff] border-[2px] rounded-lg mt-[26px]">
             <h2 className="font-semibold mt-4">Altri profili simili</h2>
@@ -241,9 +231,15 @@ export default function MainGet({ profile, setProfile, profiles, setProfiles, se
           </div>
         </div>
       ) : (
-
         <div>Caricamento...</div>
+      )}
 
+      {isProfileImageModalOpen && (
+        <ProfileImageModal 
+          profile={profile} 
+          setProfile={setProfile} 
+          onClose={() => setIsProfileImageModalOpen(false)}
+        />
       )}
     </>
   );

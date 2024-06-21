@@ -4,7 +4,7 @@ import AltriProfili from "./AltriProfili";
 import Modale from "./Modale";
 import ButtonExperience from "./ButtonExperience";
 import hamburger from '../assets/pngwing.com.png';
-import ProfileImageModal from "./ProfileImageModal"; // Importa il nuovo componente del modale
+import ProfileImageModal from "./ProfileImageModal";
 
 export default function MainGet({ profile, setProfile, profiles, setProfiles, search }) {
   

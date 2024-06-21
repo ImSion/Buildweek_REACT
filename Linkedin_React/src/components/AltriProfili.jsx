@@ -50,7 +50,7 @@ export default function AltriProfili({ profiles, setProfiles, search }) {
       {profilesToShow.map((profile) => (
         <div key={profile._id} onClick={() => vaiAlProfilo(profile._id)}>
           <div className="flex gap-5 mt-3">
-            <img className="border-[2px] rounded-full p-3 w-[30%] h-[30%]" src={profile.image} alt="img" />
+            <img className="border-[2px] rounded-full w-[48px] h-[48px]" src={profile.image} alt="img" />
             <div>
               <p>{profile.name} {profile.surname}</p>
               <p>{truncateText(profile.bio, 30)}</p>

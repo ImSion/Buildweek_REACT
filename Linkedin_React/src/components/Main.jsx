@@ -108,7 +108,7 @@ export default function MainGet({ profile, setProfile, profiles, setProfiles, se
             <div id="profile-section" className="bg-[#fff] p-5 pb-3 rounded-b-lg border-[1px]">
               <div>
                 <img
-                  className="w-[150px] rounded-full absolute top-[100px] left-[30px] border-[5px] border-white"
+                  className="w-[150px] rounded-full absolute top-[100px] left-[30px] border-[4px] border-white"
                   src={profile.image}
                   alt="immagine profilo"
                 />

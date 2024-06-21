@@ -71,7 +71,7 @@ export default function AltriProfiliDetail({ profile, profiles, setProfiles}) {
                 <div className="bg-[#fff] p-5 pb-3 rounded-b-lg border-[1px]">
                     <div>
                         <img
-                        className="w-[150px] rounded-full absolute top-[100px] left-[30px] border-[5px] border-white"
+                        className="w-[150px] h-[150px] rounded-full absolute top-[100px] left-[30px] border-[4px] border-white"
                         src={utente.image}
                         alt="immagine profilo"
                         />
@@ -94,7 +94,7 @@ export default function AltriProfiliDetail({ profile, profiles, setProfiles}) {
                 <div>
                   {experienceArray.slice(-3).map((element) => (
                     <div className="border-red-500" key={element._id}> 
-                      <div className="flex gap-[20px] mb-4 flex justify-between">
+                      <div className="flex gap-[20px] mb-4 justify-between">
                         <div className="flex">
                           <div>
                             <img className="rounded-full w-[50px] h-[50px] mr-3" src={hamburger} alt="img" />

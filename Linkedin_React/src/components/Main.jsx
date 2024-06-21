@@ -13,7 +13,7 @@ export default function MainGet({ profile, setProfile, profiles, setProfiles, se
   const [isProfileVisible, setIsProfileVisible] = useState(true);
   const [selectedExperience, setSelectedExperience] = useState(null);
   const [isProfileImageModalOpen, setIsProfileImageModalOpen] = useState(false);
-
+  const [isProfileUpdateModalOpen, setIsProfileUpdateModalOpen] = useState(false);
   const experienceArray = Object.values(experience);
 
   useEffect(() => {
@@ -84,6 +84,8 @@ export default function MainGet({ profile, setProfile, profiles, setProfiles, se
             <div className="ml-2">
               <h2 className="mt-1 text-sm font-semibold">
                 {profile.name} {profile.surname}
+                <UpdateProfile profile={profile} setProfile={setProfile} openModal={isProfileUpdateModalOpen} setOpenModal={setIsProfileUpdateModalOpen}/>
+                <button onClick={() => setIsProfileUpdateModalOpen(true)}>x</button>
               </h2>
               <div className="flex text-xs">
                 <p>{profile.title}</p>

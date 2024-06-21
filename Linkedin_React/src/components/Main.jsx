@@ -101,7 +101,7 @@ export default function MainGet({ profile, setProfile, profiles, setProfiles, se
       )}
 
       {profile ? (
-        <div className="container mx-auto flex px-[70px] items-start justify-center mt-12">
+        <div className=" mx-auto flex px-[70px] items-start justify-center mt-12">
 
           <div className="w-[804px] flex flex-col relative mt-7">
             <div className="h-[200px] w-[100%] bg-blue-800 rounded-t-lg"></div>
@@ -174,14 +174,55 @@ export default function MainGet({ profile, setProfile, profiles, setProfiles, se
               </div>
             </div>
             
-            <div className="bg-[#fff] rounded-lg border-[1px] p-5">
+            <div className="bg-[#fff] rounded-lg border-[1px] p-5 mb-2">
               <h1 className="font-semibold text-xl">Informazioni</h1>
-              <p></p>
             </div>
 
-            <div className="bg-[#fff] rounded-lg border-[1px] p-5">
-              <h1 className="font-semibold text-xl">Informazioni</h1>
-              <p></p>
+            <div className="bg-[#fff] rounded-lg border-[1px] p-5 mb-2">
+
+              <h1 className="font-semibold text-xl">Attività</h1>
+              <h6 className="text-[14px] font-semibold text-blue-700 mb-3">479 follower</h6>
+              <div className="mb-8 flex gap-2">
+                <p className="bg-[#004c33] text-white font-semibold rounded-full w-14 h-8 flex items-center justify-center text-center hover:bg-[#0e2c21] cursor-pointer">Post</p>
+                <p className="border-[1px] border-[#666666] text-[#181818] font-semibold rounded-full w-24 h-8 flex items-center justify-center text-center hover:border-[3px] cursor-pointer">Commenti</p>
+                <p className="border-[1px] border-[#666666] text-[#181818] font-semibold rounded-full w-24 h-8 flex items-center justify-center text-center hover:border-[3px] cursor-pointer">Immagini</p>
+
+              </div>
+
+              <div className="mb-3 gap-4">
+                <h6 className="text-xs font-semibold text-[#666666] mb-2">Gabriele Romano <span className="font-normal">ha pubblicato questo post • 2 giorni</span></h6>
+                <div className="flex gap-4">
+                  <img className="min-w-[70px] h-[70px] rounded-lg" src="https://picsum.photos/seed/picsum/200/300" alt="post-image" />
+                  <p className="text-xs">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio tenetur voluptatibus dignissimos corrupti quisquam perferendis, aspernatur fugit ex sed saepe voluptatum dicta tempora consectetur, quaerat blanditiis. Maxime possimus ea ratione?</p>
+                </div>
+              </div>
+
+              <div className="mb-3 gap-4">
+              <h6 className="text-xs font-semibold text-[#666666] mb-2">Michele Altieri <span className="font-normal">ha pubblicato questo post • 1 giorni</span></h6>
+                <div className="flex gap-4">
+                  <img className="min-w-[70px] h-[70px] rounded-lg" src="https://picsum.photos/seed/{10}picsum/200/300" alt="post-image" />                 
+                  <p className="text-xs">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio tenetur voluptatibus dignissimos corrupti quisquam perferendis, aspernatur fugit ex sed saepe voluptatum dicta tempora consectetur, quaerat blanditiis. Maxime possimus ea ratione?</p>
+                </div>
+              </div>
+
+              <div className="mb-3 gap-4">
+              <h6 className="text-xs font-semibold text-[#666666] mb-2">Costantino Grabesu <span className="font-normal">ha pubblicato questo post • 34m</span></h6>
+                <div className="flex gap-4">
+                  <img className="min-w-[70px] h-[70px] rounded-lg" src="https://picsum.photos/seed/{12}picsum/200/300" alt="post-image" />
+                  <p className="text-xs">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio tenetur voluptatibus dignissimos corrupti quisquam perferendis, aspernatur fugit ex sed saepe voluptatum dicta tempora consectetur, quaerat blanditiis. Maxime possimus ea ratione?</p>
+                </div>
+              </div>
+
+              <div className="mb-3 gap-4">
+              <h6 className="text-xs font-semibold text-[#666666] mb-2">Vincenzo Perretta <span className="font-normal">ha pubblicato questo post • 58m</span></h6>
+                <div className="flex gap-4">
+                  <img className="min-w-[70px] h-[70px] rounded-lg" src="https://picsum.photos/seed/{15}picsum/200/300" alt="post-image" />
+                  <p className="text-xs">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio tenetur voluptatibus dignissimos corrupti quisquam perferendis, aspernatur fugit ex sed saepe voluptatum dicta tempora consectetur, quaerat blanditiis. Maxime possimus ea ratione?</p>
+                </div>
+                <div>
+
+                </div>
+              </div>
             </div>
             
           </div>

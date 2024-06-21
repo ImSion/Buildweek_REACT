@@ -109,7 +109,7 @@ export default function MyNav({ search, setSearch, handleChange }) {
 
               <li className='w-[150px] text-center flex items-center justify-center pl-8'>
                 
-                  <p className='text-xs w-[120px] text-center text-[#cfa361] underline-offset-1'>
+                  <p className='text-xs w-[120px] text-center text-[#cfa361] underline cursor-pointer hover:text-[#7d6138]'>
                     Sblocca 1 mese di Premium
                   </p>
                                

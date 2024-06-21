@@ -1,7 +1,14 @@
+import React, { useState } from 'react';
+
 export default function Input({search, handleChange}) {
 
+    const [isFocused, setIsFocused] = useState(false);
+      
     return (
-        <div className='flex items-center justify-center focus:border-[10px]'>
+
+
+        
+        <div className='flex items-center justify-center'>
 
             <div className="bg-[#edf3f8] flex items-center rounded-s-sm h-[34px] relative">
 
@@ -16,7 +23,12 @@ export default function Input({search, handleChange}) {
                     type="text" 
                     value={search} 
                     onChange={handleChange}
-                    className='bg-[#edf3f8] rounded-sm py-[10px] px-[30px] h-[34px] border-[#edf3f8]'
+                    onFocus={() => setIsFocused(true)}
+                    onBlur={() => setIsFocused(false)}
+                    className={`transition-width duration-300 ease-in-out ${
+                        isFocused ? 'w-[360px] ' : 'w-[280px]'
+                      } bg-[#edf3f8] rounded-sm py-[10px] px-[30px] h-[34px] border-[#edf3f8]`}
+                    
                 />
            
       </div>
